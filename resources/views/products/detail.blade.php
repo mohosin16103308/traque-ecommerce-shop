@@ -149,12 +149,10 @@
 
                 <p>
                   <select style="width:150px;" id="product_size">
+                    <option>Select Size</option>
                     @foreach($prices as $price)
 
-                          <option value="{{ $price->size }}"
-                            @if ($first_attr_price->size == $price->size)
-                            selected="selected"
-                          @endif>{{ $price->size }}</option>
+                          <option value="{{ $price->size }}">{{ $price->size }}</option>
 
                           @endforeach
                   </select>
@@ -166,7 +164,7 @@
 
 
 
-                $  <span id="attr_price_on_size" >{{ $first_attr_price->price }} </span><br>
+                $  <span id="attr_price_on_size" >{{ $product->price }} </span><br>
 
 
            </span>
@@ -176,7 +174,7 @@
     <label>Quantity:</label>
     <input type="text" value="1"/>
 
-    <button type="button" class="btn btn-fefault cart">
+    <button type="button" id="cart_btn" class="btn btn-fefault cart">
      <i class="fa fa-shopping-cart"></i>
      Add to cart
     </button>
@@ -367,6 +365,7 @@ $.ajax({
 
            }else{
             $('.product_stock').text("Sold Out");
+            $("#cart_btn").addClass('disabled');
 
            }
       }
